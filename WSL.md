@@ -2,7 +2,20 @@
 
 Table of Contents:
 
-- 
+- [Downloading and Installing](#downloading-and-installing)
+- [Configure VM](#configure-vm)
+  - [Install binaries](#install-binaries)
+  - [Set up locale](#set-up-locale)
+  - [Disable bell sound](#disable-bell-sound)
+  - [Disable Inserting Windows 'PATH's Into the Shell's 'PATH'](#disable-inserting-windows-paths-into-the-shells-path)
+  - [Disable Windows Mounts Being Prefixed With '/mnt'](#disable-windows-mounts-being-prefixed-with-mnt)
+- [Customize Terminal](#customize-terminal)
+- [Install N (Node Version Manager)](#install-n-node-version-manager)
+- [Install Yarn](#install-yarn)
+- [Copying Over SSH from Cygwin](#copying-over-ssh-from-cygwin)
+- [How to back up a user folder](#how-to-back-up-a-user-folder)
+- [How to back up the entire VM](#how-to-back-up-the-entire-vm)
+- [NOTES](#notes)
 
 ---
 
@@ -43,7 +56,7 @@ Utilizing `lxrunoffline` and PowerShell
 apt update && apt upgrade
 
 # General tools
-apt install curl git psmisc vim zsh
+apt install curl git psmisc vim wget zsh
 
 # For Node / Yarn
 apt install curl git gnupg1 make
@@ -88,7 +101,7 @@ vi ~/.zshrc
 unsetopt BEEP
 ```
 
-### Disable Inserting Windows 'PATH's Into the Shell's 'PATH'.
+### Disable Inserting Windows 'PATH's Into the Shell's 'PATH'
 
 A good explanation of what's going on can be
 [found here](https://stackoverflow.com/a/51345880). The simplest fix is to use
@@ -102,7 +115,7 @@ lxrunoffline sf -n Ubuntu-bionic -v 5
 Windows binary paths listed. If you want to revert the change, just change `5`
 back to `7`.
 
-### Disable Windows Mounts Being Prefixed With '/mnt'.
+### Disable Windows Mounts Being Prefixed With '/mnt'
 
 - In the VM `vi /etc/wsl.conf`, add
 ```sh
@@ -266,7 +279,7 @@ lxrunoffline ui -n Ubuntu-bionic2
 
 ---
 
-## NOTES
+## Notes
 
 - Depending on your distro, you may have to use `apt-get` instead of `apt`, but
   `apt-get` seems to be the standard now.

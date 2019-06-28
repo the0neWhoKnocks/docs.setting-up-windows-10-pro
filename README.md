@@ -6,7 +6,28 @@ preference and a better development experience.
 **Table of Contents**
 
 - Windows Tweaks & Tips
-  - 
+  - [Windows Tweaks &amp; Tips](#windows-tweaks--tips)
+  - [Backing Up &amp; Restoring Data](#backing-up--restoring-data)
+  - [Allow Powershell Script Execution](#allow-powershell-script-execution)
+  - [Disable Windows Defender](#disable-windows-defender)
+  - [Disable User Account Control](#disable-user-account-control)
+  - [Disable Firewall Notifications](#disable-firewall-notifications)
+  - [Disable Focus Assist](#disable-focus-assist)
+  - [Disable File Warnings for NAS](#disable-file-warnings-for-nas)
+  - [Installing Apps With Chocolatey](#installing-apps-with-chocolatey)
+  - [Change Computer Name &amp; Workgroup](#change-computer-name--workgroup)
+  - [Move User Content Folders to Another Drive](#move-user-content-folders-to-another-drive)
+  - [Unlink Microsoft Account from Admin Profile](#unlink-microsoft-account-from-admin-profile)
+  - [Create a Shortcut to AppData](#create-a-shortcut-to-appdata)
+  - [Taskbar settings](#taskbar-settings)
+  - [Remove Quick Access in Explorer](#remove-quick-access-in-explorer)
+  - [Getting the Sleep Command to Work](#getting-the-sleep-command-to-work)
+  - [Prevent Computer From Going to Sleep When Unattended](#prevent-computer-from-going-to-sleep-when-unattended)
+  - [Keep Computer On When Lid Closed](#keep-computer-on-when-lid-closed)
+  - [Network Setup](#network-setup)
+  - [Run custom scripts at startup](#run-custom-scripts-at-startup)
+  - [Get Product Key After Online Purchase](#get-product-key-after-online-purchase)
+  - [Get System Info](#get-system-info)
 - [Setting up WSL](./WSL.md)
 - [App Tweaks](./APP-TWEAKS.md)
 
@@ -73,7 +94,7 @@ Settings > Search for "focus assist" > Set to `Off`
 
 ---
 
-# Disable File Warnings for NAS
+## Disable File Warnings for NAS
 
 Gets rid of those annoying **Windows Security - These files might be harmful to
 your computer** warnings that pop up when you're trying to move files on a NAS.

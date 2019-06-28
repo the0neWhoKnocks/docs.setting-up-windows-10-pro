@@ -24,11 +24,11 @@ Table of Contents:
 Utilizing `lxrunoffline` and PowerShell
 - Open PowerShell
   - To allow https requests enter
-  ```ps
+  ```powershell
   [Net.ServicePointManager]::SecurityProtocol = "tls12, tls11, tls"
   ```
   - Download the Ubuntu/bionic img with
-  ```ps
+  ```powershell
   wget -O "D:\VMs\_imgs\ubuntu-bionic-$(Get-Date -format "FileDateTime").tar.gz" "https://lxrunoffline.apphb.com/download/Ubuntu/bionic"
   ```
     - The `lxrunoffline.apphb.com` download path comes from
@@ -36,7 +36,7 @@ Utilizing `lxrunoffline` and PowerShell
     - I got the `codeName` from https://wiki.ubuntu.com/Releases, and the actual
     shortened name `bionic` from this repo https://github.com/tianon/docker-brew-ubuntu-core.
   - Install with
-  ```ps
+  ```powershell
   lxrunoffline i -n "Ubuntu-bionic" -d "D:\VMs\Ubuntu\bionic" -f "D:\VMs\_imgs\ubuntu-bionic-<DATE>.tar.gz"
   ```
     - Note that `<DATE>` should be replaced with the value from the actual download.
@@ -108,7 +108,7 @@ A good explanation of what's going on can be
 `lxrunoffline` to set the registry value to `5`.
 
 - In Powershell
-```ps
+```powershell
 lxrunoffline sf -n Ubuntu-bionic -v 5
 ```
 - In the VM you should be able to run `echo $PWD` and not see all the extra
@@ -255,7 +255,7 @@ whatever you'd like. The script will:
 - Create a backup with an appended timestamp.
 
 Now, like you did above, we can create a new VM but from the backup
-```ps
+```powershell
 # create the new vm
 lxrunoffline i -n "Ubuntu-bionic2" -d "D:\VMs\Ubuntu\bionic2" -f "D:\Backups\VMs\Systems\Ubuntu-18.04-bionic_20190624203808.tar.gz" -s
 # list all vms
@@ -267,13 +267,13 @@ lxrunoffline sd -n Ubuntu-bionic2
 - Switch back and forth between VMs by closing WSL and running the below commands.
 Opening and closing WSL between `lxrunoffline sd` commands to see different ZSH 
 themes being displayed.
-```ps
+```powershell
 lxrunoffline sd -n Ubuntu-bionic
 # or
 lxrunoffline sd -n Ubuntu-bionic2
 ```
 - To delete a VM just run
-```ps
+```powershell
 lxrunoffline ui -n Ubuntu-bionic2
 ```
 

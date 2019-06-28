@@ -15,7 +15,7 @@ Table of Contents:
 - [Copying Over SSH from Cygwin](#copying-over-ssh-from-cygwin)
 - [How to back up a user folder](#how-to-back-up-a-user-folder)
 - [How to back up the entire VM](#how-to-back-up-the-entire-vm)
-- [NOTES](#notes)
+- [Notes](#notes)
 
 ---
 

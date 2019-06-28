@@ -2,6 +2,35 @@
 
 ---
 
+## Atom
+
+Atom ships with it's own `git` binary in `C:\Users\Glass\AppData\Local\atom\app-1.38.2\resources\app.asar.unpacked\node_modules\dugite\git\mingw64\bin`. What
+this means is that a majority of git commands work in the editor, except when
+you want to commit. You'll get an error like:
+```
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+```
+To fix this issue, you can:
+- Manually create a `.gitconfig` file at the root of your User folder with your
+git creds in it.
+```
+[user]
+	email = <EMAIL>
+	name = <NAME>
+```
+- Or go into the `bin` folder mentioned above and in `cmd` or PowerShell run
+```
+./git config --global user.email "<EMAIL>"
+./git config --global user.name "<NAME>"
+```
+
+---
+
 ## Notepad++
 
 GUI

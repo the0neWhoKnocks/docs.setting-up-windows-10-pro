@@ -45,6 +45,7 @@ cinst 7zip.install # to handle files like .zip, .tar.gz, .rar, etc
 cinst androidstudio # for Android App development
 cinst atom # IDE of choice
 cinst classic-shell -installArgs ADDLOCAL=ClassicStartMenu # allows you customize Win10 to behave more like Win8
+cinst colortool # allows to easily change color schemes in cmd or wsl terminals
 cinst docker-desktop # for Docker development
 cinst evernote --ignore-checksums # notes. For some reason it says it fails the install, but succeeds
 cinst firefox # browser

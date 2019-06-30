@@ -35,7 +35,7 @@ Utilizing `lxrunoffline` and PowerShell
     https://github.com/DDoSolitary/LxRunOffline/wiki.
     - I got the `codeName` from https://wiki.ubuntu.com/Releases, and the actual
     shortened name `bionic` from this repo https://github.com/tianon/docker-brew-ubuntu-core.
-  - Install with
+  - Install the VM from the downloaded tar
   ```powershell
   lxrunoffline i -n "Ubuntu-bionic" -d "D:\VMs\Ubuntu\bionic" -f "D:\VMs\_imgs\ubuntu-bionic-<DATE>.tar.gz"
   ```
@@ -56,7 +56,7 @@ Utilizing `lxrunoffline` and PowerShell
 apt update && apt upgrade
 
 # General tools
-apt install curl git psmisc vim wget zsh
+apt install curl git psmisc sudo tmux vim wget zsh
 
 # For Node / Yarn
 apt install curl git gnupg1 make
@@ -81,6 +81,42 @@ dpkg-reconfigure locales
 
 # once done
 locale # should print out everything without any errors at the top
+```
+
+### Add non-root user
+
+`lxrunoffline` can only install as `root`, so you have to install extra users if
+you want them.
+
+```sh
+adduser <USER_NAME>
+# allow sudo
+usermod -aG sudo <USER_NAME>
+# switch to the new user and check sudo access
+su <USER_NAME>
+ls -la /root
+# get the user's id for the next step
+id
+```
+
+Now in PowerShell, we'll need to switch the default uid for the VM. This way,
+the next time you open a wsl terminal, it'll login to the non-root user.
+```powershell
+lxrunoffline su -n Ubuntu-bionic -v <UID>
+```
+
+### Change default login shell
+
+```sh
+# list available shells
+cat /etc/shells
+# set the login shell
+chsh -s /bin/zsh
+
+# if chsh doesn't work, you can try
+usermod -s /bin/zsh
+# or vipw, and edit manually
+vipw
 ```
 
 ### Disable bell sound
@@ -150,6 +186,21 @@ C: on /c type drvfs
       - I just made a back up of the files within
       `D:\Programs\wsl-terminal-tabbed\bin`, and then added the new binaries.
 
+If using the standard `wsl` terminal, theming can be a bit tricky. `ColorTool`
+is the closest thing to making it easy to deal with. In the VM
+```sh
+# Go into the tool's directory
+cd /c/ProgramData/chocolatey/lib/colortool/content
+# Run the tool, telling it to set colors using "VT sequences" (for WSL specifically)
+./ColorTool.exe -x ./schemes/solarized_dark.itermcolors
+```
+Once the colors have been applied, you then have to right-click the terminal's
+titlebar > Properties > Click Ok to save the color changes.
+- More schemes can be [found here](https://github.com/mbadolato/iTerm2-Color-Schemes). You only need the files in the `schemes` folder, but I downloaded a
+`.zip` so that I had the screenshots, and other versions in case I need them
+later.
+- I ended up going with `ChallengerDeep`.
+
 ---
 
 ## Install N (Node Version Manager)
@@ -171,7 +222,7 @@ I ended up running:
 ```sh
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-apt update && apt install --no-install-recommends yarn
+apt install --no-install-recommends yarn
 yarn --version
 ```
 

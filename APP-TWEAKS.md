@@ -42,6 +42,9 @@ GUI
     - Tab Settings
       - Tab size: `2`
       - (check) Replace by space
+      - You may encounter some files (like .yml) aren't respecting your settings.
+      You'll just have to scroll down to the language (in the same list), select
+      it, and then check **Use default value** to use global settings.
   - MISC.
     - (uncheck) Enable Notepad++ auto-updater
 

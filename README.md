@@ -26,8 +26,10 @@ preference and a better development experience.
   - [Keep Computer On When Lid Closed](#keep-computer-on-when-lid-closed)
   - [Network Setup](#network-setup)
   - [Run custom scripts at startup](#run-custom-scripts-at-startup)
-  - [Get Product Key After Online Purchase](#get-product-key-after-online-purchase)
-  - [Get System Info](#get-system-info)
+  - [Troubleshooting](#troubleshooting)
+    - [How to Get Product Key After Online Purchase](#how-to-get-product-key-after-online-purchase)
+    - [How to Get System Info](#how-to-get-system-info)
+    - [How to Determine What is Waking System While Sleeping](#how-to-determine-what-is-waking-system-while-sleeping)
 - [Setting up WSL](./WSL.md)
 - [App Tweaks](./APP-TWEAKS.md)
 
@@ -126,6 +128,10 @@ script:
 - Right-click `install-apps-w-chocolatey.ps1` > Create Shortcut
 - Right-click the new shortcut > Properties
   - Change **Target** to be `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -f "<PATH_TO_FILE>\install-apps-w-chocolatey.ps1"`
+
+After you've installed/configured any remaining apps, open the Task Manager, go
+to the Startup tab, and Right-click and **Disable** anything you don't want
+automatically starting on boot.
 
 ---
 
@@ -286,7 +292,9 @@ I use this in conjunction with [my mounting script](https://github.com/the0neWho
 
 ---
 
-## Get Product Key After Online Purchase
+## Troubleshooting
+
+### How to Get Product Key After Online Purchase
 
 If you purchase a license to Windows online they don't seem to give you easy
 access to that license on their site.
@@ -294,10 +302,17 @@ access to that license on their site.
 - Right-click Start, select Admin terminal
 - `wmic path SoftwareLicensingService get OA3xOriginalProductKey`
 
----
-
-## Get System Info
+### How to Get System Info
 
 In case you need info about amount of RAM, system name, drivers, etc.
 
 Run > `msinfo32`
+
+### How to Determine What is Waking System While Sleeping
+
+Run (as Admin) > `powercfg -lastwake`
+
+For example, that command informed me that an Intel ethernet device had woke my system.
+I just had to Run > `devmgmt.msc`, go into **Network Adapters**, select the
+device > Properties > Power Management > and disable the Allow this device to
+wake options.

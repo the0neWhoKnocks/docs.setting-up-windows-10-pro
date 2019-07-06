@@ -42,6 +42,7 @@ choco feature enable -n allowGlobalConfirmation
 
 # applications
 cinst 7zip.install # to handle files like .zip, .tar.gz, .rar, etc
+cinst adobereader -params '"/NoUpdates"'  # reader for PDF files
 cinst androidstudio # for Android App development
 cinst atom # IDE of choice
 cinst classic-shell -installArgs ADDLOCAL=ClassicStartMenu # allows you customize Win10 to behave more like Win8

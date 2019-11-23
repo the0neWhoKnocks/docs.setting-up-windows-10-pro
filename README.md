@@ -14,6 +14,7 @@ preference and a better development experience.
   - [Disable Firewall Notifications](#disable-firewall-notifications)
   - [Disable Focus Assist](#disable-focus-assist)
   - [Disable File Warnings for NAS](#disable-file-warnings-for-nas)
+  - [Disable Thumbs.db files](#disable-thumbs-db-files)
   - [Installing Apps With Chocolatey](#installing-apps-with-chocolatey)
   - [Change Computer Name &amp; Workgroup](#change-computer-name--workgroup)
   - [Move User Content Folders to Another Drive](#move-user-content-folders-to-another-drive)
@@ -108,6 +109,21 @@ your computer** warnings that pop up when you're trying to move files on a NAS.
   `192.168.1.*`.
 - `Ok` out of all the dialogs.
 - You may have to disconnect, and reconnect the drives, I didn't.
+
+---
+
+## Disable Thumbs.db files
+
+- Open up `gpedit.msc`
+- Navigate to `User Configuration > Administrative Templates > Windows Components`
+  - Click on `File Explorer`
+    - Double-click on `Turn off the display of thumbnails and only display icons on network folders`
+      - Click `Enabled`
+      - Click `Apply`
+    - Double-click on `Turn off the caching of thumbnails in hidden thumbs.db files`
+      - Click `Enabled`
+      - Click `Apply`
+- In an Admin `cmd` or `powershell` terminal, run `gpupdate /force`
 
 ---
 

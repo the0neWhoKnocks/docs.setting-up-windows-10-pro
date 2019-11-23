@@ -60,7 +60,7 @@ cinst RocketDock # OSX-like dock for Windows
 cinst stexbar # add tools to Explorer like regex renaming of files
 cinst stickies # desktop sticky notes
 cinst tortoisegit # adds git status icons to files/folders within Explorer
-cinst traystatus.portable # indicates whether caps/num lock are enabled
+#cinst traystatus.portable # indicates whether caps/num lock are enabled
 cinst tvrenamer # rename TV show files
 cinst vlc # plays a majority of media files, using it for video
 cinst winamp # simple & snappy audio player

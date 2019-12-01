@@ -54,6 +54,7 @@ cinst GoogleChrome # browser
 cinst handbrake.install # video encoding tool
 cinst licecap # gif capture tool
 cinst lxrunoffline # easily manage WSL VMs
+cinst meld # diff tool
 cinst notepadplusplus.install
 cinst partitionwizard # for resizing HD partitions
 cinst RocketDock # OSX-like dock for Windows

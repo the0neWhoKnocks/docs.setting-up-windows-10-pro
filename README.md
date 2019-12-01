@@ -15,6 +15,7 @@ preference and a better development experience.
   - [Disable Focus Assist](#disable-focus-assist)
   - [Disable File Warnings for NAS](#disable-file-warnings-for-nas)
   - [Disable Thumbs.db files](#disable-thumbs-db-files)
+  - [Disable Automatic Updates](#disable-automatic-updates)
   - [Installing Apps With Chocolatey](#installing-apps-with-chocolatey)
   - [Change Computer Name &amp; Workgroup](#change-computer-name--workgroup)
   - [Move User Content Folders to Another Drive](#move-user-content-folders-to-another-drive)
@@ -123,6 +124,17 @@ your computer** warnings that pop up when you're trying to move files on a NAS.
     - Double-click on `Turn off the caching of thumbnails in hidden thumbs.db files`
       - Click `Enabled`
       - Click `Apply`
+- In an Admin `cmd` or `powershell` terminal, run `gpupdate /force`
+
+---
+
+## Disable Automatic Updates
+
+- Open up `gpedit.msc`
+- Navigate to `Computer Configuration > Administrative Templates > Windows Components > Windows Update`
+  - Double-click `Configure Automatic Updates`
+    - Select `Disabled`
+    - Click `Apply`
 - In an Admin `cmd` or `powershell` terminal, run `gpupdate /force`
 
 ---
@@ -260,6 +272,16 @@ still be named for the old account. To get that back in order, do this:
     wake the computer.
 - You may have to enable an option in your Bios to allow for waking when in
 sleep mode as well.
+  - You may also have to disable any sort of `Fast Boot` otions since they
+  can choose to only boot with minimal devices and may or may not choose
+  that your GPU isn't neccessary.
+- Disable `Wake Timers` in Power Options, click the `Change plan settings`
+link (there may be a couple links, they're the same).
+  - Go to Sleep > Wake Timers > Set to `Disable`, and `Apply`
+- If you're experiencing strange Display behavior (monitor not coming on)
+after the system wakes from sleep (and your display is plugged into the
+GPU which is using a PCIe slot) you may have to disable `Link State Power Management`.
+  - Go to Power Options > Change plan settings > PCI Express > Link State Power Management > set to `Off`
 
 ---
 

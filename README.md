@@ -86,7 +86,8 @@ after a while.
 
 ## Disable Firewall Notifications
 
-Settings > Notifications & Actions > (toggle off) Security and Maintenance
+Option #1: Settings > Notifications & Actions > (toggle off) Security and Maintenance
+Option #2: `gpedit` > Computer Configuration > Administrative Templates > Windows Components > Windows Security > Notifications > Hide all notifications
 
 ---
 

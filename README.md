@@ -138,6 +138,25 @@ your computer** warnings that pop up when you're trying to move files on a NAS.
     - Click `Apply`
 - In an Admin `cmd` or `powershell` terminal, run `gpupdate /force`
 
+As part of this [Powershell script](./assets/install-apps-w-chocolatey.ps1), I
+also disable `WaaSMedicPS`. It's a pesky service that will constantly try to
+reenable updates.
+
+For good measure, I also disable the ability for the Update Service to start.
+- In Services, open up the `Windows Update` properties
+- In `General`
+  - Set the Startup type to `Manual`
+  - `Stop` it if it's running
+- In `Log On`
+  - Toggle `This account` for `Log on as`
+  - Set the account to your User name. Usually you can just type in `.\<username>`
+  replacing `<username>` with your actual username.
+  - Set `Password` and `Confirm password` to the same incorrect password. This
+  way if something does try to turn it back on, it'll fail to start due to lack
+  of permissions.
+  - If you need to turn it back on, just `Log on as` back to `Local System account`
+  and you may have to restart your system.
+
 ---
 
 ## Installing Apps With Chocolatey

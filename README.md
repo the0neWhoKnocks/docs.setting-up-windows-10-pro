@@ -127,7 +127,7 @@ your computer** warnings that pop up when you're trying to move files on a NAS.
 
 ---
 
-## Disable Automatic Updates
+## Disable Automatic Updates (part 1)
 
 - Open up `gpedit.msc`
 - Navigate to `Computer Configuration > Administrative Templates > Windows Components > Windows Update`
@@ -145,7 +145,7 @@ restoring files and settings.
 
 I've included a documented [Powershell script](./assets/install-apps-w-chocolatey.ps1)
 that will:
-- Disable Windows Update
+- Disable Windows Update (part 2)
 - Enable certain Windows features
 - Install Chocolatey
 - Install applications

@@ -127,6 +127,17 @@ your computer** warnings that pop up when you're trying to move files on a NAS.
 
 ---
 
+## Disable Automatic Updates
+
+- Open up `gpedit.msc`
+- Navigate to `Computer Configuration > Administrative Templates > Windows Components > Windows Update`
+  - Double-click `Configure Automatic Updates`
+    - Select `Disabled`
+    - Click `Apply`
+- In an Admin `cmd` or `powershell` terminal, run `gpupdate /force`
+
+---
+
 ## Installing Apps With Chocolatey
 
 Once Windows is up and running, you'll want to get your apps installed before
@@ -260,6 +271,16 @@ still be named for the old account. To get that back in order, do this:
     wake the computer.
 - You may have to enable an option in your Bios to allow for waking when in
 sleep mode as well.
+  - You may also have to disable any sort of `Fast Boot` otions since they
+  can choose to only boot with minimal devices and may or may not choose
+  that your GPU isn't neccessary.
+- Disable `Wake Timers` in Power Options, click the `Change plan settings`
+link (there may be a couple links, they're the same).
+  - Go to Sleep > Wake Timers > Set to `Disable`, and `Apply`
+- If you're experiencing strange Display behavior (monitor not coming on)
+after the system wakes from sleep (and your display is plugged into the
+GPU which is using a PCIe slot) you may have to disable `Link State Power Management`.
+  - Go to Power Options > Change plan settings > PCI Express > Link State Power Management > set to `Off`
 
 ---
 

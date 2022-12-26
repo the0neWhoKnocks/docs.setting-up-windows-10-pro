@@ -2,35 +2,6 @@
 
 ---
 
-## Atom
-
-Atom ships with it's own `git` binary in `C:\Users\Glass\AppData\Local\atom\app-1.38.2\resources\app.asar.unpacked\node_modules\dugite\git\mingw64\bin`. What
-this means is that a majority of git commands work in the editor, except when
-you want to commit. You'll get an error like:
-```
-*** Please tell me who you are.
-
-Run
-
-  git config --global user.email "you@example.com"
-  git config --global user.name "Your Name"
-```
-To fix this issue, you can:
-- Manually create a `.gitconfig` file at the root of your User folder with your
-git creds in it.
-```
-[user]
-	email = <EMAIL>
-	name = <NAME>
-```
-- Or go into the `bin` folder mentioned above and in `cmd` or PowerShell run
-```
-./git config --global user.email "<EMAIL>"
-./git config --global user.name "<NAME>"
-```
-
----
-
 ## Notepad++
 
 GUI
@@ -63,29 +34,6 @@ Markdown Support
   
 ---
 
-## Docker
-
-Settings
-- General
-  - (uncheck) Automatically check for updates
-  - (uncheck) Send usage statistics
-  - (check) Expose daemon on tcp...
-- Shared Drives
-  - (check) what drives you want docker containers to have access to, for volume mounts and such.
-
-If you want to backup your images
-- Go to `C:\Users\Public\Documents\Hyper-V\Virtual hard disks`
-- Copy `MobyLinuxVM.vhdx` to an external drive
-- On the new machine, turn off Docker (if it's running)
-- Overwrite the current `MobyLinuxVM.vhdx` with your old one.
-- Restart Docker. It may complain about `Containers need to be enabled` and then
-it'll restart the system, but after a reboot things seem to be fine. You can
-run `docker images` to see all your old images.
-
-Refer to this doc for [Docker and WSL notes](https://gist.github.com/the0neWhoKnocks/b45db9ddaede64a2e19dce712524fabb).
-
----
-
 ## StExBar
 
 - Open a folder
@@ -101,33 +49,6 @@ Refer to this doc for [Docker and WSL notes](https://gist.github.com/the0neWhoKn
 
 ---
 
-## Firefox
-
-- Navigate to `C:\Users\<USER>\AppData\Roaming\Mozilla\Firefox`
-- Copy over your old profile folder to `Profiles`, take note of the profile folder name.
-- Inside of `installs.ini`, find the item that has `Locked=1`, that's the current profile.
-  - Change it's value to be `Default=Profiles/<OLD_PROFILE_FOLDER_NAME>`
-- Inside of `profiles.ini` find the `Locked=1` item and do the same for it's
-`Default=` value, and for the `Path=` value below it.
-
----
-
-## Traystatus
-
-- Go to `C:\ProgramData\chocolatey\lib` and move `traystatus.portable` to a
-directory where you want it to live permanently.
-- Run it from the new directory `D:\Programs\traystatus.portable\tools\TrayStatus\TrayStatus.exe`
-  - Options
-    - (check) Start with Windows
-    - (uncheck) Check for Updates
-    - Click the `Internet Connection Settings` button
-      - Select `Use Custom Proxy Server Settings`
-      - Server Address: `disabled-tray-status` (so it hopefully doesn't try to connect to anything)
-  - License Key
-    - Delete the temporary "Pro" key to immediately opt into the Free version.
-
----
-
 ## Fix applications that need to run with Admin rights
 
 - These apps need this - RocketDock, Kodi
@@ -136,10 +57,71 @@ directory where you want it to live permanently.
 - Under *Group or user names:*, click on *Users (COMPUTER_NAME)\Users*
 - Under *Permissions for Users*, check *Full control* and then click *Apply*.
 
-Or for stuff like `ConEMU`
-- Go into their folder and select the `.exe` (`C:/ConEmu/App/ConEmu/ConEmu.exe` for example)
-- Right-Click > Properties
-- Compatibility tab > check `Run this program as an admin`
+---
+
+## Kodi
+
+- Let the amp handle the audio. Go to Settings > System > Audio Output
+  - Number of channels: 7.1
+  - The below may give you better sound, but at the cost of not being able
+  to control the volume via Kodi
+    - Enable Passthrough: check
+    - Dolby Digital Capable Reciever: check
+    - DTS Capable Reciever: check
+
+### Install Advanced Emulator Launcher
+
+[Forum](https://forum.kodi.tv/showthread.php?tid=287826)
+[Repo](https://github.com/Wintermute0110/plugin.program.AEL)
+[Install Directions](https://github.com/Wintermute0110/plugin.program.AEL#installing-the-latest-development-version)
+
+- First create a folder that'll house shortcuts to the executables for
+your games. Then create/copy over those shortcuts to the folder.
+  - Create an `artwork` folder in that folder.
+- Download the linked zip file, extract it, and re-zip it.
+  - Since I was on an older verion of Kodi, I had to update the `xbmc.python`
+  version in the `addon.xml` file before zipping it up again. For Jarvis,
+  the version is `2.24.0`.
+- In Kodi, go to System > Addons > Install from Zip
+- Once it's installed, go to the Programs > Add-Ons
+  - Select Advanced Eumulator Launcher
+    - Go to the bottom of the list (Browse By...) and open the Context
+    menu (C on keyboard)
+      - Select `Add New Launcher`
+      - Choose `LNK Launcher`
+      - Select the folder with the shortcuts
+      - Name the launcher
+      - Choose `Microsoft Xbox One` for the Platform.
+      - Select the `artwork` folder
+    - Once the new launcher has been created, select it and open the Context
+    menu for it and choose `Scan ROMs`.
+
+---
+
+## Steam
+
+For a new install you'll have to log in, and maybe re-add your computer as a trusted system.
+
+- Open up Steam (not Big Picture)
+  - Wire up external games Library by going to Settings > Downloads
+    - Click on Steam Library Folders
+    - Click Add Library Folder
+    - Set it to `<EXTERNAL_DRIVE>/Games`
+    - Right-click the new path and choose `Make Default Folder`
+  - Disable start on startup by going to Settings > Interface
+    - Uncheck `Run Steam when my computer starts`
+ 
+---
+
+GOG
+
+- Go into Settings
+  - Disable auto-start in `General`, uncheck `Launch on system start`
+  - Disable game auto-updates in `Features`, uncheck `Auto-update games`
+  - Wire up external games Library by going to `Downloads`
+    - Set Game Installation Folder to the `<EXTERNAL_DRIVE>/Games` folder on the external drive
+    - Set Other Downloads to `<EXTERNAL_DRIVE>/Games/GOG misc.`
+    - Your library may still show up as empty
 
 ---
 
@@ -149,7 +131,10 @@ Or for stuff like `ConEMU`
 - Unzip the contents into KODI/portable_data/addons
 - Kodi > System > Add-Ons > Install from Repository > Superrepo all > Program Add-Ons
 - Scroll down to Steam, and Install
-  - The below is for the Rapier skin
+  - Configure the add-on. Go to `Advanced` and check these options:
+    - Run Kodi in Portable mode
+    - Suspend Kodi audio when running Steam
+- The below is for the Rapier skin
   - System > Skin Settings > Home > Add More Categories
   - Custom1 (check)
     - Type: Preset

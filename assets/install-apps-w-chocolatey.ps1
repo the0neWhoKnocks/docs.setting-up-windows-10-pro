@@ -11,16 +11,25 @@ sc.exe query wuauserv
 # disable the service from auto-starting at boot (that value is 0x03, 3 to humans)
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\wuauserv" -Name "Start" -Value 4
 # double check it's REALLY disabled - Start value should be 0x4
-REG.exe QUERY HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv /v Start 
+REG.exe QUERY HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv /v Start
   # Can also use `Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\wuauserv" -Name "Start"`
-# take ownership of malicious file
-cmd.exe /c takeown /f "C:\Windows\System32\WaaSMedicPS.dll"
-icacls "C:\Windows\System32\WaaSMedicPS.dll" /grant administrators:F
-# rename file, and create a dummy file in it's place
-if(![System.IO.File]::Exists("C:\Windows\System32\WaaSMedicPS.dll.bak")){
-  Rename-Item -Path "C:\Windows\System32\WaaSMedicPS.dll" -NewName "WaaSMedicPS.dll.bak"
-  New-Item -ItemType "file" -Path "C:\Windows\System32\WaaSMedicPS.dll"
-}
+## take ownership of malicious file
+#cmd.exe /c takeown /f "C:\Windows\System32\WaaSMedicPS.dll"
+#icacls "C:\Windows\System32\WaaSMedicPS.dll" /grant administrators:F
+## rename file, and create a dummy file in it's place
+#if(![System.IO.File]::Exists("C:\Windows\System32\WaaSMedicPS.dll.bak")){
+#  Rename-Item -Path "C:\Windows\System32\WaaSMedicPS.dll" -NewName "WaaSMedicPS.dll.bak"
+#  New-Item -ItemType "file" -Path "C:\Windows\System32\WaaSMedicPS.dll"
+#}
+
+## disable Update Medic ==
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" -Name "Start" -Value 4
+
+## disable Update Orchestrator
+Get-ScheduledTask -TaskPath "\Microsoft\Windows\UpdateOrchestrator" | Disable-ScheduledTask
+  # disable individual items with:
+  #Disable-ScheduledTask -TaskPath "\Microsoft\Windows\UpdateOrchestrator" -TaskName "Backup Scan"
+Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\UsoSvc" -Name "Start" -Value 4
 
 ## Enable Windows Features =====================================================
 # To get the `FeatureName` open an Admin PS terminal and enter something like:

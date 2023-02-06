@@ -136,6 +136,15 @@ your computer** warnings that pop up when you're trying to move files on a NAS.
     - Click `Apply`
 - In an Admin `cmd` or `powershell` terminal, run `gpupdate /force`
 
+(may not be neccessary)
+- Open `regedit.exe`
+- Navigate to `HKLM:\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc`
+- Right-Click > Permissions, click Advanced
+- Change Owner from SYSTEM to Administrators
+- Disable SYSTEM's inheritance (click button)
+- Select SYSTEM, click Edit, remove it's permissions
+- Apply changes
+
 ---
 
 ## Installing Apps With Chocolatey

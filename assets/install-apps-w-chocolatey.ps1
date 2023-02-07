@@ -26,7 +26,7 @@ REG.exe QUERY HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv /v S
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" -Name "Start" -Value 4
 
 ## disable Update Orchestrator
-Get-ScheduledTask -TaskPath "\Microsoft\Windows\UpdateOrchestrator" | Disable-ScheduledTask
+Get-ScheduledTask -TaskPath "\Microsoft\Windows\UpdateOrchestrator\" | Disable-ScheduledTask
   # disable individual items with:
   #Disable-ScheduledTask -TaskPath "\Microsoft\Windows\UpdateOrchestrator" -TaskName "Backup Scan"
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\UsoSvc" -Name "Start" -Value 4

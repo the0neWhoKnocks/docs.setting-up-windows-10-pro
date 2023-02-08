@@ -333,8 +333,10 @@ For some reason this is a hidden option
 I use this in conjunction with [my mounting script](https://github.com/the0neWhoKnocks/powershell-network-mount) to set up network shares.
 
 - Create a shortcut of the script
+   - In the shortcut's Target field prepend this `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File `
+   - Set the Run field to `Minimized`
 - Run > `shell:startup`
-  - Move the shortcut to the Startup folder that opened.
+   - Move the shortcut to the Startup folder that opened.
 
 ---
 

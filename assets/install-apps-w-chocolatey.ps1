@@ -2,38 +2,55 @@
 
 Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SoftwareProtectionPlatform\Activation" -Name "Manual" -Value 1
 
+# to see how many more are available: slmgr -dlv
+slmgr -rearm # 30 days without watermark
+
+# https://www.funoracleapps.com/2022/01/how-to-remove-windows-activation-logo.html
+
+#bcdedit -set TESTSIGNING OFF
+
+
 ## Disable Windows Update ======================================================
 
-# set the Windows Update service to "disabled"
-sc.exe config wuauserv start=disabled
-# display the status of the service
-sc.exe query wuauserv
-# stop the service, in case it is running
-sc.exe stop wuauserv
-# display the status again, because we're paranoid
-sc.exe query wuauserv
-# disable the service from auto-starting at boot (that value is 0x03, 3 to humans)
-Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\wuauserv" -Name "Start" -Value 4
-# double check it's REALLY disabled - Start value should be 0x4
-REG.exe QUERY HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv /v Start
-  # Can also use `Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\wuauserv" -Name "Start"`
-## take ownership of malicious file
-#cmd.exe /c takeown /f "C:\Windows\System32\WaaSMedicPS.dll"
-#icacls "C:\Windows\System32\WaaSMedicPS.dll" /grant administrators:F
-## rename file, and create a dummy file in it's place
-#if(![System.IO.File]::Exists("C:\Windows\System32\WaaSMedicPS.dll.bak")){
-#  Rename-Item -Path "C:\Windows\System32\WaaSMedicPS.dll" -NewName "WaaSMedicPS.dll.bak"
-#  New-Item -ItemType "file" -Path "C:\Windows\System32\WaaSMedicPS.dll"
-#}
+# Win11
+# https://pureinfotech.com/disable-automatic-updates-windows-11/
+# Disable auto-updates, but still allow for manual updates
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows" -Name "WindowsUpdate"
+New-Item -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" -Name "AU"
+New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "NoAutoUpdate" -PropertyType DWord -Value 1
 
-## disable Update Medic ==
-#Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" -Name "Start" -Value 4
 
-## disable Update Orchestrator
-Get-ScheduledTask -TaskPath "\Microsoft\Windows\UpdateOrchestrator\" | Disable-ScheduledTask
-  # disable individual items with:
-  #Disable-ScheduledTask -TaskPath "\Microsoft\Windows\UpdateOrchestrator" -TaskName "Backup Scan"
-Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\UsoSvc" -Name "Start" -Value 4
+# # set the Windows Update service to "disabled"
+# sc.exe config wuauserv start=disabled
+# # display the status of the service
+# sc.exe query wuauserv
+# # stop the service, in case it is running
+# sc.exe stop wuauserv
+# # display the status again, because we're paranoid
+# sc.exe query wuauserv
+# # disable the service from auto-starting at boot (that value is 0x03, 3 to humans)
+# Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\wuauserv" -Name "Start" -Value 4
+# # double check it's REALLY disabled - Start value should be 0x4
+# REG.exe QUERY HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv /v Start
+#   # Can also use `Get-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\wuauserv" -Name "Start"`
+# ## take ownership of malicious file
+# #cmd.exe /c takeown /f "C:\Windows\System32\WaaSMedicPS.dll"
+# #icacls "C:\Windows\System32\WaaSMedicPS.dll" /grant administrators:F
+# ## rename file, and create a dummy file in it's place
+# #if(![System.IO.File]::Exists("C:\Windows\System32\WaaSMedicPS.dll.bak")){
+# #  Rename-Item -Path "C:\Windows\System32\WaaSMedicPS.dll" -NewName "WaaSMedicPS.dll.bak"
+# #  New-Item -ItemType "file" -Path "C:\Windows\System32\WaaSMedicPS.dll"
+# #}
+# 
+# ## disable Update Medic ==
+# #Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" -Name "Start" -Value 4
+# 
+# ## disable Update Orchestrator
+# Get-ScheduledTask -TaskPath "\Microsoft\Windows\UpdateOrchestrator\" | Disable-ScheduledTask
+#   # disable individual items with:
+#   #Disable-ScheduledTask -TaskPath "\Microsoft\Windows\UpdateOrchestrator" -TaskName "Backup Scan"
+# Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\UsoSvc" -Name "Start" -Value 4
+
 
 ## Enable Windows Features =====================================================
 # To get the `FeatureName` open an Admin PS terminal and enter something like:

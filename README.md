@@ -136,6 +136,10 @@ your computer** warnings that pop up when you're trying to move files on a NAS.
     - Click `Apply`
 - In an Admin `cmd` or `powershell` terminal, run `gpupdate /force`
 
+(when viewing the Event Viewer, I was seeing errors for WindowsUpdateAgent which appeared to be caused by the Windows Store, so disable it)
+- Open a PowerShell windows as Admin.
+- Run `Get-AppxPackage *windowsstore* | Remove-AppxPackage`
+
 (may not be neccessary)
 - Open `regedit.exe`
 - Navigate to `HKLM:\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc`

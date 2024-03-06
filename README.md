@@ -129,12 +129,17 @@ your computer** warnings that pop up when you're trying to move files on a NAS.
 
 ## Disable Automatic Updates (part 1)
 
+- Open up Services and Stop then Disable 'Update Orchestrator' and 'Windows Update'. 
+
 - Open up `gpedit.msc`
-- Navigate to `Computer Configuration > Administrative Templates > Windows Components > Windows Update`
+- Navigate to `Computer Configuration > Administrative Templates > Windows Components > Windows Update > Manage End User Experience`
   - Double-click `Configure Automatic Updates`
     - Select `Disabled`
     - Click `Apply`
 - In an Admin `cmd` or `powershell` terminal, run `gpupdate /force`
+
+- open up Task Scheduler
+- Disable all tasks for Windows Defender and Windows Update. Not sure if it's needed but I changed the permissions of the task to run as Admin user instead of System. I also eventually deleted the tasks, not sure if they'll just get re-added by something else. 
 
 (when viewing the Event Viewer, I was seeing errors for WindowsUpdateAgent which appeared to be caused by the Windows Store, so disable it)
 - Open a PowerShell windows as Admin.

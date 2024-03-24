@@ -58,6 +58,16 @@ like to restore.
 
 ## Disable Windows Defender
 
+You may have to disable Tamper Protection before attempting any of the below.
+
+- Boot into Safe Mode by running `msconfig.exe`, go to Boot tab and select Safe boot. Go to General tab and uncheck `Load system services`. Click OK.
+- After booted in Safe Mode, Search for `regedit.exe`, right-click on it and run as Admin.
+- Go to File > Import, select `<REPO>/assets/disable-windows-defender.reg`. It gave me an error that I didn't have the proper permissions or that a key may be in use, but after a reboot the services weren't running.
+- Run `msconfig.exe`, on the General tab select Normal startup, on the Boot tab uncheck Safe boot, click Ok. 
+
+
+Below are some old steps, may not be needed, keeping for reference.
+
 - Disable real-time protection
   - Search for `security` > Choose `Windows Defender Security Center`
   - Go to `Virus & threat protection` > Virus & threat protection settings > Turn off all toggles

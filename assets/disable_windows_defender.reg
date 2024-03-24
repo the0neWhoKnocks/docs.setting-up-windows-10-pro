@@ -1,0 +1,30 @@
+Windows Registry Editor Version 5.00
+
+; How to use:
+; - Run `msconfig.exe`, go to Boot tab and select Safe boot.
+; - After booted in Safe Mode, Search for `regedit.exe`, right-click on it and run as Admin.
+; - Go to File > Import, select this file.
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Defender\Features]
+"TamperProtection"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender]
+"DisableAntiSpyware"=dword:00000001
+"DisableRealtimeMonitoring"=dword:00000001
+"DisableAntiVirus"=dword:00000001
+
+; Microsoft Defender Antivirus Mini-Filter Driver
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WdFilter]
+"Start"=dword:00000004
+
+; Microsoft Defender Antivirus Network Inspection System Driver
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WdNisDrv]
+"Start"=dword:00000004
+
+; Microsoft Defender Antivirus Network Inspection Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WdNisSvc]
+"Start"=dword:00000004
+
+; Microsoft Defender Antivirus Service
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WinDefend]
+"Start"=dword:00000004
